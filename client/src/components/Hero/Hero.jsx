@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import profile from "../../assets/images/profile.jpg";
 
 const roles = [
   "MERN Stack Developer",
@@ -30,21 +29,25 @@ const Hero = () => {
 
       <div className="pointer-events-none absolute -right-40 bottom-10 h-96 w-96 rounded-full bg-purple-500/10 blur-[140px]" />
 
+      {/* Main Container */}
       <div className="relative z-10 mx-auto grid min-h-screen max-w-7xl grid-cols-1 items-center gap-14 px-6 pt-24 md:grid-cols-2">
 
-        {/* ================= LEFT ================= */}
+        {/* ================= LEFT SIDE ================= */}
         <motion.div
           initial={{ opacity: 0, x: -80 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
+          {/* Intro */}
           <p className="mb-4 text-xl text-cyan-400">
             👋 Hello, I'm
           </p>
 
+          {/* Name */}
           <h1 className="text-5xl font-bold leading-tight md:text-7xl">
             Aditya
             <br />
+
             <span className="text-cyan-400">
               Singh Chauhan
             </span>
@@ -61,6 +64,7 @@ const Hero = () => {
             {roles[roleIndex]}
           </motion.h2>
 
+          {/* Description */}
           <p className="mt-6 max-w-xl text-lg leading-8 text-gray-400">
             I build modern web applications using MERN Stack and Python,
             while continuously improving my Data Structures, Algorithms,
@@ -99,6 +103,7 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 0.6 }}
           >
+            {/* GitHub */}
             <a
               href="https://github.com/adityasinghchauhan295"
               target="_blank"
@@ -108,6 +113,7 @@ const Hero = () => {
               GitHub ↗
             </a>
 
+            {/* LinkedIn */}
             <a
               href="https://www.linkedin.com/in/aditya-singh-chauhan-b34895287"
               target="_blank"
@@ -117,6 +123,7 @@ const Hero = () => {
               LinkedIn ↗
             </a>
 
+            {/* Email */}
             <a
               href="mailto:cadityasingh788@gmail.com"
               className="rounded-xl border border-white/10 bg-white/[0.03] px-5 py-2.5 text-gray-300 transition duration-300 hover:border-cyan-400/30 hover:text-cyan-400"
@@ -125,7 +132,7 @@ const Hero = () => {
             </a>
           </motion.div>
 
-          {/* Small Info */}
+          {/* Extra Info */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -138,7 +145,7 @@ const Hero = () => {
           </motion.div>
         </motion.div>
 
-        {/* ================= RIGHT ================= */}
+        {/* ================= RIGHT SIDE ================= */}
         <motion.div
           className="flex justify-center md:justify-end"
           initial={{ opacity: 0, x: 80, scale: 0.9 }}
@@ -146,7 +153,9 @@ const Hero = () => {
           transition={{ duration: 0.9 }}
         >
           <motion.div
-            animate={{ y: [0, -12, 0] }}
+            animate={{
+              y: [0, -12, 0],
+            }}
             transition={{
               duration: 4,
               repeat: Infinity,
@@ -157,15 +166,15 @@ const Hero = () => {
             {/* Outer Glow */}
             <div className="absolute inset-0 scale-110 rounded-full bg-cyan-400/20 blur-3xl" />
 
-            {/* Outer Ring */}
+            {/* Gradient Ring */}
             <div className="relative h-72 w-72 rounded-full bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 p-1.5 md:h-[400px] md:w-[400px]">
 
-              {/* Inner Border */}
+              {/* Inner Frame */}
               <div className="h-full w-full rounded-full bg-[#050816] p-2">
 
-                {/* Profile Image */}
+                {/* Actual Profile Photo */}
                 <img
-                  src={profile}
+                  src="/profile.jpg"
                   alt="Aditya Singh Chauhan"
                   className="h-full w-full rounded-full object-cover object-center"
                 />
@@ -175,7 +184,9 @@ const Hero = () => {
 
             {/* Floating Badge */}
             <motion.div
-              animate={{ y: [0, -8, 0] }}
+              animate={{
+                y: [0, -8, 0],
+              }}
               transition={{
                 duration: 3,
                 repeat: Infinity,
