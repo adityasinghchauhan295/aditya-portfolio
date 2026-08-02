@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
 
 const Contact = () => {
@@ -27,46 +27,50 @@ const Contact = () => {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
+  event.preventDefault();
 
-    setLoading(true);
+  setLoading(true);
+
+  setStatus({
+    type: "",
+    message: "",
+  });
+
+  try {
+    await emailjs.send(
+      "service_xljabho",
+      "template_4b02uxi",
+      {
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      },
+      "YwkBbRqD4oe_V4xHx"
+    );
 
     setStatus({
-      type: "",
-      message: "",
+      type: "success",
+      message: "Message sent successfully! ✅",
     });
 
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/api/contact",
-        formData
-      );
+    setFormData({
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    });
+  } catch (error) {
+    console.error("EmailJS Error:", error);
 
-      setStatus({
-        type: "success",
-        message:
-          response.data.message || "Message sent successfully! ✅",
-      });
-
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      });
-    } catch (error) {
-      console.error("Contact form error:", error);
-
-      setStatus({
-        type: "error",
-        message:
-          error.response?.data?.message ||
-          "Something went wrong. Please try again.",
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
+    setStatus({
+      type: "error",
+      message: "Failed to send message. Please try again.",
+    });
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <section
